@@ -1,3 +1,15 @@
+<<<<<<< HEAD
+=======
+
+const DODGER = document.getElementById('dodger')
+const GAME = document.getElementById('game')
+const GAME_HEIGHT = 400
+const GAME_WIDTH = 400
+const LEFT_ARROW = 37 // use e.which!
+const RIGHT_ARROW = 39 // use e.which!
+const ROCKS = []
+const START = document.getElementById('start')
+>>>>>>> b5dfe93d202555eeeb7588e950a033212e69b472
 
 const DODGER = document.getElementById('dodger');
 const GAME = document.getElementById('game');
@@ -34,11 +46,30 @@ function checkCollision(rock) {
     // FIXME: The rock is 20 pixel's wide -- how do we get the right edge?
     const rockRightEdge = rockLeftEdge+ 20;
 
+<<<<<<< HEAD
         return (
       (rockLeftEdge <= dodgerLeftEdge && rockRightEdge >= dodgerLeftEdge) ||
       (rockLeftEdge >= dodgerLeftEdge && rockRightEdge <= dodgerRightEdge) ||
       (rockLeftEdge <= dodgerRightEdge && rockRightEdge >= dodgerRightEdge)
    );
+=======
+    if   (rockLeftEdge <= dodgerLeftEdge && rockRightEdge >= dodgerLeftEdge||
+          rockLeftEdge >= dodgerLeftEdge && rockRightEdge <= dodgerRightEdge||
+          rockLeftEdge <= dodgerRightEdge && rockRightEdge >= dodgerRightEdge){
+    
+               /**
+               * Think about it -- what's happening here?
+               * There's been a collision if one of three things is true:
+               * 1. The rock's left edge is < the DODGER's left edge,
+               *    and the rock's right edge is > the DODGER's left edge;
+               * 2. The rock's left edge is > the DODGER's left edge,
+               *    and the rock's right edge is < the DODGER's right edge;
+               * 3. The rock's left edge is < the DODGER's right edge,
+               *    and the rock's right edge is > the DODGER's right edge
+               */ 
+            
+      return true;
+>>>>>>> b5dfe93d202555eeeb7588e950a033212e69b472
     }
   
 }
@@ -71,7 +102,11 @@ function createRock(x) {
     rock.style.top = `${top += 1}px`;
 
     if (top < GAME_HEIGHT) {
+<<<<<<< HEAD
         window.requestAnimationFrame(moveRock);
+=======
+        window.requestAnimationFrame(moveRock)
+>>>>>>> b5dfe93d202555eeeb7588e950a033212e69b472
     }
     else {
       rock.remove();
@@ -79,7 +114,11 @@ function createRock(x) {
   }
 
   // We should kick of the animation of the rock around here
+<<<<<<< HEAD
   window.requestAnimationFrame(moveRock);
+=======
+  window.requestAnimationFrame(moveRock)
+>>>>>>> b5dfe93d202555eeeb7588e950a033212e69b472
   // Add the rock to ROCKS so that we can remove all rocks
   // when there's a collision
   ROCKS.push(rock);
@@ -95,6 +134,7 @@ function createRock(x) {
  * Finally, alert "YOU LOSE!" to the player.
  */
 function endGame() {
+<<<<<<< HEAD
   clearInterval(gameInterval);
 
   ROCKS.forEach(function(rock) { rock.remove() });
@@ -105,11 +145,24 @@ function endGame() {
    START.style.display = 'inline';
 
    return alert('YOU LOSE!');
+=======
+  clearInterval(gameInterval)
+
+  ROCKS.forEach(function(rock) { rock.remove() })
+
+  document.removeEventListener('keydown', moveDodger)
+
+   START.innerHTML = 'Play again?'
+   START.style.display = 'inline'
+
+   return alert('YOU LOSE!')
+>>>>>>> b5dfe93d202555eeeb7588e950a033212e69b472
   
 }
 
 function moveDodger(e) {
   // implement me!
+<<<<<<< HEAD
   const num = e.which;
   
    if ([LEFT_ARROW, RIGHT_ARROW].indexOf(num) > -1) {
@@ -125,21 +178,49 @@ if (num === LEFT_ARROW) {
 
 function moveDodgerLeft() {
   window.requestAnimationFrame(function() { const left = positionToInteger(DODGER.style.left);
+=======
+document.addEventListener('keydown', function(e) {
+  if (e.which === 65) {
+        moveDodgerLeft() 
+      }
+})
+document.addEventListener('keydown', function(e) {
+  if (e.which === 68) {
+        moveDodgerRight() 
+      }
+})
+}
+
+function moveDodgerLeft() {
+  window.requestAnimationFrame(function() { const left = positionToInteger(DODGER.style.left)
+>>>>>>> b5dfe93d202555eeeb7588e950a033212e69b472
 
     if (left > 0) {
       DODGER.style.left = `${left - 4}px`;
     }
+<<<<<<< HEAD
   });
+=======
+  })
+>>>>>>> b5dfe93d202555eeeb7588e950a033212e69b472
 }
 
 function moveDodgerRight() {
  window.requestAnimationFrame(function() {
+<<<<<<< HEAD
    const left = positionToInteger(DODGER.style.left);
+=======
+   const left = positionToInteger(DODGER.style.left)
+>>>>>>> b5dfe93d202555eeeb7588e950a033212e69b472
 
     if (left < 360) {
       DODGER.style.left = `${left + 4}px`;
     }
+<<<<<<< HEAD
    });
+=======
+   })
+>>>>>>> b5dfe93d202555eeeb7588e950a033212e69b472
 }
 
 /**
